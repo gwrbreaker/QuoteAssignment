@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Quote List";
+}
+
+@model IEnumerable<QuoteAssignment.Models.Quotes>
+<!--All the entered quotes listed out from the database-->
+<div>
+    <h2>Here are the quotes that have been entered so far:</h2>
+
+    <table>
+        <thead class="text-center">
+            <tr><th>Quote</th><th>Author/Speaker</th><th>Date Given</th><th>Subject</th><th>Citation</th></tr>
+        </thead>
+
+        <tbody>
+            @foreach (QuoteAssignment.Models.Quotes q in Model)
+            {
+                <tr class="text-center">
+                    <td class="table-warning">@q.QuoteText</td>
+                    <td class="table-success">@q.AuthorSpeaker</td>
+                    <td class="table-primary">@q.Date</td>
+                    <td class="table-danger">@q.Subject</td>
+                    <td class="table-info">@q.Citation</td>
+                    <td>
+                        <!--The edit and delete buttons are in the place of forms whose submit actions will carry out 
+                            either an update of the quote or a deletion of one using the controller-->
+                        <form asp-action="EditForm">
+                            <input hidden name="QuoteID" id="QuoteID" value="@q.QuoteID" />
+                            <input type="submit" value="Edit" class="shadow" />
+                        </form>
+                    </td>
+                    <td>
+                        <form asp-action="DeleteQuote">
+                            <input hidden name="QuoteID" id="QuoteID" value="@q.QuoteID" />
+                            <input type="submit" value="Delete" class="shadow" />
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

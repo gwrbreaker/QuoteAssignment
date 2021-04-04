@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Enter a Quote for Spencer";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>Enter A quote</p>
+<!--This is where you can enter the info for a quote to be added to the collection-->
+@model QuoteAssignment.Models.Quotes
+<form asp-action="EnterQuote" method="post">
+    <div>
+        <label asp-for="QuoteText">Quote: </label>
+        <input asp-for="QuoteText" />
+    </div>
+
+    <div>
+        <label asp-for="AuthorSpeaker">Author/Speaker: </label>
+        <input asp-for="AuthorSpeaker" />
+    </div>
+
+    <div>
+        <label asp-for="Date">Date The Quote was Given: </label>
+        <input asp-for="Date" />
+    </div>
+
+    <div>
+        <label asp-for="Subject">Subject: </label>
+        <input asp-for="Subject" />
+    </div>
+
+    <div>
+        <label asp-for="Citation">Quote Citation: </label>
+        <input asp-for="Citation">
+    </div>
+
+    <!--The program will automatically assign a quoteID to the newly entered quote using the model-->
+    <button type="submit">Submit your Quote</button>
+</form>
+<div asp-validation-summary="All"></div>

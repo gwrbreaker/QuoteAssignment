@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "Edit Quote";
+}
+<h1>@ViewData["Title"]</h1>
+
+@model QuoteAssignment.Models.Quotes
+<!--This is the form that passes in all the data that is from the database, but allows you to edit it and then save changes
+    to the database so it is saved forever-->
+<form asp-action="QuoteUpdate" method="post">
+    <div>
+        <label asp-for="QuoteText">QuoteText: </label>
+        <input asp-for="QuoteText" required value="@Model.QuoteText" />
+    </div>
+
+    <div>
+        <label asp-for="AuthorSpeaker">Author/Speaker: </label>
+        <input asp-for="AuthorSpeaker" required value="@Model.AuthorSpeaker" />
+    </div>
+
+    <div>
+        <label asp-for="Date">Date Given: </label>
+        <input asp-for="Date" required value="@Model.Date" />
+    </div>
+
+    <div>
+        <label asp-for="Subject">Optional Subject: </label>
+        <input asp-for="Subject" value="@Model.Subject" />
+    </div>
+
+    <div>
+        <label asp-for="Citation">Optional Citation: </label>
+        <input asp-for="Citation" value="@Model.Citation">
+    </div>
+
+    <!--This Part is where the quoteID is passed in, so that all the rest of the corresponding data for the 
+        quote that is being edited can also be passed in, and then edited and saved-->
+    <input hidden asp-for="QuoteID" value="@Model.QuoteID" />
+
+
+    <button type="submit">Save Changes</button>
+</form>
+<div asp-validation-summary="All"></div>
+
